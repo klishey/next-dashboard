@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import styles from '@/app/ui/home.module.css';
-import { lusitana } from './ui/font';
+import { lusitana } from '@/app/ui/fonts';
 
 export default function Page() {
   return (
