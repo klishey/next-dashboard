@@ -29,7 +29,7 @@ export default function NavLinks() {
     <div className="relative">
       {links.map((link) => {
         const LinkIcon = link.icon;
-        const isActive = link.href === pathname;
+        const isActive = link.href === pathname || (link.href !== '/dashboard' && pathname.startsWith(link.href));
 
         return (
           <div key={link.name} className="relative">
