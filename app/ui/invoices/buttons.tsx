@@ -1,5 +1,9 @@
+'use client';
+
 import { PencilIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
 
 export function CreateInvoice() {
   return (
@@ -14,13 +18,23 @@ export function CreateInvoice() {
 }
 
 export function UpdateInvoice({ id }: { id: string }) {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+
+  const handleClick = () => {
+    startTransition(() => {
+      router.push(`/dashboard/invoices/${id}/edit`);
+    });
+  };
+
   return (
-    <Link
-      href="/dashboard/invoices"
-      className="rounded-md border p-2 hover:bg-gray-100"
+    <button
+      onClick={handleClick}
+      disabled={isPending}
+      className="rounded-md border p-2 hover:bg-gray-100 transition-colors disabled:opacity-50"
     >
       <PencilIcon className="w-5" />
-    </Link>
+    </button>
   );
 }
 
